@@ -38,6 +38,8 @@
         font-family: 'Inter', sans-serif;
         background-color: #0F0F0F;
         color: #F5F5F5;
+        margin: 0;
+        padding: 0;
       }
       h1, h2, h3, h4, h5, h6 {
         font-family: 'Oswald', sans-serif;
@@ -88,6 +90,9 @@
       .logoloop__list {
         display: flex;
         align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
       }
 
       .logoloop--vertical .logoloop__list {
@@ -130,120 +135,38 @@
         pointer-events: none;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
-      .logoloop--scale-hover .logoloop__item {
-        overflow: visible;
+      
+      /* Custom Scrollbar */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
       }
-
-      .logoloop--scale-hover .logoloop__item:hover img,
-      .logoloop--scale-hover .logoloop__item:hover .logoloop__node {
-        transform: scale(1.2);
-        transform-origin: center center;
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #1A1A1A;
       }
-
-      .logoloop--scale-hover .logoloop__node {
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .logoloop__link {
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #FF5E00;
         border-radius: 4px;
-        transition: opacity 0.2s ease;
       }
-
-      .logoloop__link:hover {
-        opacity: 0.8;
-      }
-
-      .logoloop__link:focus-visible {
-        outline: 2px solid currentColor;
-        outline-offset: 2px;
-      }
-
-      .logoloop--fade::before,
-      .logoloop--fade::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: clamp(24px, 8%, 120px);
-        pointer-events: none;
-        z-index: 10;
-      }
-
-      .logoloop--fade::before {
-        left: 0;
-        background: linear-gradient(
-          to right,
-          var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-          rgba(0, 0, 0, 0) 100%
-        );
-      }
-
-      .logoloop--fade::after {
-        right: 0;
-        background: linear-gradient(
-          to left,
-          var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-          rgba(0, 0, 0, 0) 100%
-        );
-      }
-
-      .logoloop--vertical.logoloop--fade::before,
-      .logoloop--vertical.logoloop--fade::after {
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: clamp(24px, 8%, 120px);
-      }
-
-      .logoloop--vertical.logoloop--fade::before {
-        top: 0;
-        bottom: auto;
-        background: linear-gradient(
-          to bottom,
-          var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-          rgba(0, 0, 0, 0) 100%
-        );
-      }
-
-      .logoloop--vertical.logoloop--fade::after {
-        bottom: 0;
-        top: auto;
-        background: linear-gradient(
-          to top,
-          var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-          rgba(0, 0, 0, 0) 100%
-        );
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .logoloop__track {
-          transform: translate3d(0, 0, 0) !important;
-        }
-
-        .logoloop__item img,
-        .logoloop__node {
-          transition: none !important;
-        }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #CC4B00;
       }
     </style>
   <script type="importmap">
 {
   "imports": {
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.39.3"
+    "@supabase/supabase-js": "https://aistudiocdn.com/@supabase/supabase-js@^2.86.2"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>
