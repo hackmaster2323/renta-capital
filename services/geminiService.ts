@@ -2,7 +2,6 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { ToolRecommendation } from "../types";
 
 // En Vite, process.env.API_KEY se reemplaza estáticamente durante el build.
-// Accedemos directamente para asegurar que el reemplazo funcione correctamente.
 const apiKey = process.env.API_KEY;
 
 // Inicializamos el cliente solo si existe la key
@@ -12,7 +11,7 @@ export const getToolRecommendations = async (projectDescription: string): Promis
   if (!ai || !apiKey) {
     console.warn("API Key not found or configured correctly.");
     return [
-      { toolName: "Demo Hammer Drill", reason: "API Key missing (Check Vercel Env Vars)", estimatedDailyRate: "$50" },
+      { toolName: "Demo Hammer Drill", reason: "API Key missing (Check Config)", estimatedDailyRate: "$50" },
       { toolName: "Demo Concrete Saw", reason: "API Key missing", estimatedDailyRate: "$120" },
       { toolName: "Demo Excavator", reason: "API Key missing", estimatedDailyRate: "$450" }
     ];
@@ -40,11 +39,14 @@ export const getToolRecommendations = async (projectDescription: string): Promis
       }
     });
 
+    // Con responseSchema, el texto devuelto es JSON válido garantizado.
     const text = response.text;
     if (!text) return [];
+    
     return JSON.parse(text) as ToolRecommendation[];
   } catch (error) {
     console.error("Gemini API Error:", error);
+    // Retornar lista vacía en error para no romper la UI
     return [];
   }
 };
