@@ -2,9 +2,10 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { ToolRecommendation } from "../types";
 
 // @ts-ignore: process.env.API_KEY is replaced by Vite at build time
-const apiKey = process.env.API_KEY;
+const apiKey = process.env.API_KEY as string;
 
-// Inicializamos el cliente solo si existe la key
+// Inicializamos el cliente usando la variable definida arriba (Opción B: Más limpia)
+// Se añade ': null' para completar el operador ternario correctamente.
 const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 export const getToolRecommendations = async (projectDescription: string): Promise<ToolRecommendation[]> => {
@@ -42,13 +43,12 @@ export const getToolRecommendations = async (projectDescription: string): Promis
     const text = response.text;
     if (!text) return [];
     
-    // Limpiar posibles bloques de código markdown que el modelo pueda incluir
+    // Limpiamos posibles bloques markdown en la respuesta JSON
     const jsonStr = text.replace(/```json\n?|\n?```/g, '').trim();
     
     return JSON.parse(jsonStr) as ToolRecommendation[];
   } catch (error) {
     console.error("Gemini API Error:", error);
-    // Retornar lista vacía en error para no romper la UI
     return [];
   }
 };
