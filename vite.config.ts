@@ -3,19 +3,20 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // Casting process to any to avoid TypeScript errors in some environments
+  // Cargar variables de entorno locales si existen (.env)
+  // Casting process a 'any' para evitar errores de TS si el entorno es estricto
   const env = loadEnv(mode, (process as any).cwd(), '');
   
-  // Prioridad: 
-  // 1. process.env.API_KEY (Variables de entorno del sistema/Netlify CI)
-  // 2. env.API_KEY (Archivo .env local cargado por Vite)
-  // 3. Fallback (Clave hardcodeada)
-  const apiKey = process.env.API_KEY || env.API_KEY || "AIzaSyCfN6Xq2gdxC8Z1i_ZraMJGdwpJbKCYMm4";
+  // Lógica de selección de API Key:
+  // 1. process.env.API_KEY: Variable definida en el sistema (Panel de Netlify / CI)
+  // 2. env.API_KEY: Variable definida en archivo .env local
+  // 3. String vacío fallback
+  const apiKey = process.env.API_KEY || env.API_KEY || "";
 
   return {
     plugins: [react()],
     define: {
-      // Polyfill process.env.API_KEY for the Gemini SDK
+      // Reemplaza 'process.env.API_KEY' en el código del cliente por el valor real durante el build
       'process.env.API_KEY': JSON.stringify(apiKey)
     }
   };
