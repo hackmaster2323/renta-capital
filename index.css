@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* 
+  Nota: Las directivas @tailwind se han eliminado para evitar conflictos en entornos de vista previa
+  que usan el CDN. Los estilos base de Tailwind se cargan via script en index.html.
+*/
 
 body {
   font-family: 'Inter', sans-serif;
@@ -8,10 +9,13 @@ body {
   color: #F5F5F5;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
 }
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', sans-serif;
 }
+
 .text-outline {
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
 }
