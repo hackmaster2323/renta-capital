@@ -1,26 +1,20 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { ToolRecommendation } from "../types";
 
-// Safety check to prevent accessing properties of undefined if process is not available
-const getApiKey = () => {
-  try {
-    if (typeof process !== 'undefined' && process.env) {
-      return process.env.API_KEY;
-    }
-  } catch (e) {
-    return undefined;
-  }
-  return undefined;
-};
+// En Vite, process.env.API_KEY se reemplaza estáticamente durante el build.
+// Accedemos directamente para asegurar que el reemplazo funcione correctamente.
+const apiKey = process.env.API_KEY;
 
-const apiKey = getApiKey();
+// Inicializamos el cliente solo si existe la key
 const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 export const getToolRecommendations = async (projectDescription: string): Promise<ToolRecommendation[]> => {
   if (!ai || !apiKey) {
-    console.warn("API Key not found, returning mock data.");
+    console.warn("API Key not found or configured correctly.");
     return [
-      { toolName: "Demo Hammer Drill", reason: "API Key missing", estimatedDailyRate: "$50" }
+      { toolName: "Demo Hammer Drill", reason: "API Key missing (Check Vercel Env Vars)", estimatedDailyRate: "$50" },
+      { toolName: "Demo Concrete Saw", reason: "API Key missing", estimatedDailyRate: "$120" },
+      { toolName: "Demo Excavator", reason: "API Key missing", estimatedDailyRate: "$450" }
     ];
   }
 

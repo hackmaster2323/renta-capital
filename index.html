@@ -4,53 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Capital Rental | Equipos de Construcción</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              industrial: {
-                black: '#0F0F0F',
-                charcoal: '#1A1A1A',
-                gray: '#333333',
-                silver: '#D4D4D4',
-                orange: '#FF5E00',
-                orangeLight: '#FF8000',
-                orangeDark: '#CC4B00',
-                white: '#FFFFFF',
-              }
-            },
-            fontFamily: {
-              sans: ['Inter', 'system-ui', 'sans-serif'],
-              display: ['Oswald', 'Impact', 'sans-serif'],
-            },
-            backgroundImage: {
-              'monogram-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
-            }
-          }
-        }
-      }
-    </script>
+    <meta name="description" content="Plataforma premium de alquiler de equipos de construcción y ferretería industrial con asistente de proyectos IA.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Oswald:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- ImportMap vital para entornos sin bundler tradicional -->
-    <script type="importmap">
-    {
-      "imports": {
-        "vite": "https://aistudiocdn.com/vite@^7.2.6",
-        "react": "https://aistudiocdn.com/react@^19.2.1",
-        "react/": "https://aistudiocdn.com/react@^19.2.1/",
-        "react-dom": "https://aistudiocdn.com/react-dom@^19.2.1",
-        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-        "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.1/client",
-        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
-        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
-        "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
-        "@supabase/supabase-js": "https://aistudiocdn.com/@supabase/supabase-js@^2.86.2"
-      }
-    }
-    </script>
-  </head>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "@supabase/supabase-js": "https://aistudiocdn.com/@supabase/supabase-js@^2.86.2",
+    "vite": "https://aistudiocdn.com/vite@^7.2.6",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+  }
+}
+</script>
+</head>
   <body>
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
