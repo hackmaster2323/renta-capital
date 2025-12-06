@@ -3,10 +3,10 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
+  // Casting process to any to avoid TypeScript errors in some environments
   const env = loadEnv(mode, (process as any).cwd(), '');
   
   // Usamos la key del entorno si existe, si no, usamos la proporcionada por el usuario
-  // para asegurar que la build funcione inmediatamente.
   const apiKey = env.API_KEY || "AIzaSyCfN6Xq2gdxC8Z1i_ZraMJGdwpJbKCYMm4";
 
   return {

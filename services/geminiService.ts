@@ -1,7 +1,7 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { ToolRecommendation } from "../types";
 
-// En Vite, process.env.API_KEY se reemplaza estáticamente durante el build.
+// @ts-ignore: process.env.API_KEY is replaced by Vite at build time
 const apiKey = process.env.API_KEY;
 
 // Inicializamos el cliente solo si existe la key
@@ -39,11 +39,13 @@ export const getToolRecommendations = async (projectDescription: string): Promis
       }
     });
 
-    // Con responseSchema, el texto devuelto es JSON válido garantizado.
     const text = response.text;
     if (!text) return [];
     
-    return JSON.parse(text) as ToolRecommendation[];
+    // Limpiar posibles bloques de código markdown que el modelo pueda incluir
+    const jsonStr = text.replace(/```json\n?|\n?```/g, '').trim();
+    
+    return JSON.parse(jsonStr) as ToolRecommendation[];
   } catch (error) {
     console.error("Gemini API Error:", error);
     // Retornar lista vacía en error para no romper la UI
