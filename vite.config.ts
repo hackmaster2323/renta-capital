@@ -6,8 +6,11 @@ export default defineConfig(({ mode }) => {
   // Casting process to any to avoid TypeScript errors in some environments
   const env = loadEnv(mode, (process as any).cwd(), '');
   
-  // Usamos la key del entorno si existe, si no, usamos la proporcionada por el usuario
-  const apiKey = env.API_KEY || "AIzaSyCfN6Xq2gdxC8Z1i_ZraMJGdwpJbKCYMm4";
+  // Prioridad: 
+  // 1. process.env.API_KEY (Variables de entorno del sistema/Netlify CI)
+  // 2. env.API_KEY (Archivo .env local cargado por Vite)
+  // 3. Fallback (Clave hardcodeada)
+  const apiKey = process.env.API_KEY || env.API_KEY || "AIzaSyCfN6Xq2gdxC8Z1i_ZraMJGdwpJbKCYMm4";
 
   return {
     plugins: [react()],
